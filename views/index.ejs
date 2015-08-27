@@ -60,8 +60,8 @@
 
       </div>
     </div>
-    <div class="col-md-4" class="track-listing">
-      <div class="row" class="controls">
+    <div class="col-md-4 track-listing">
+      <div class="row controls">
         <div class="col-md-6">
           <a ng-click="shuffle()">Shuffle</a>
         </div>
@@ -80,7 +80,7 @@
           <th>Movie</th>
           <th>Duration</th>
         </tr>
-        <tr ng-repeat="track in playlist" class="track" ng-class="{playing : track.beingPlayed }">
+        <tr ng-repeat="track in playlist" class="track" ng-class="{playing : track.beingPlayed }" ng-click="playSelectedTrack(track, currentVideo.player)">
           <td>{{track.title | extract: 'trackTitle'}}</td>
           <td>{{ track.title | extract: 'movieName' }}</td>
           <td>{{track.duration | extract: 'duration'}}</td>

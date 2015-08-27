@@ -37,6 +37,16 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
     playNext(player, false, true);
   };
 
+  $scope.playSelectedTrack = function(track, player) {
+    var targetIndex = playlist.indexOf(track);
+    $scope.currentVideo.object.beingPlayed = false;
+    $scope.currentVideo.index = targetIndex;
+    $scope.currentVideo.object = playlist[targetIndex];
+    $scope.currentVideo.url = $scope.currentVideo.object.file;
+    $scope.currentVideo.object.beingPlayed = true;
+    player.playVideo();
+  };
+
   function playNext(player, playNext, playPrevious) {
     $scope.currentVideo.object.beingPlayed = false;
     $scope.currentVideo.object.completed = true;

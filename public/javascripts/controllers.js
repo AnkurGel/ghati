@@ -6,6 +6,7 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
   $scope.currentVideo = {
     object: playlist[currentIndex],
     url: playlist[currentIndex].file,
+    index: 0,
     player: null
   };
 
@@ -28,10 +29,23 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
     $scope.loopingOn = !$scope.loopingOn;
   };
 
-  function playNext(player) {
+  $scope.playNext = function(player) {
+    playNext(player, true);
+  };
+
+  $scope.playPrevious = function(player) {
+    playNext(player, false, true);
+  };
+
+  function playNext(player, playNext, playPrevious) {
     $scope.currentVideo.object.beingPlayed = false;
     $scope.currentVideo.object.completed = true;
-    currentIndex += ($scope.loopingOn ? 0 : 1);
+    if(playNext || playPrevious) {
+      playNext ? (currentIndex += 1) : (currentIndex -= 1);
+    } else {
+      currentIndex += ($scope.loopingOn ? 0 : 1);
+    }
+    $scope.currentVideo.index = currentIndex;
     $scope.currentVideo.object = playlist[currentIndex];
     $scope.currentVideo.url = $scope.currentVideo.object.file;
     $scope.currentVideo.object.beingPlayed = true;

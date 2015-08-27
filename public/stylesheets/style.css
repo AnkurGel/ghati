@@ -11,8 +11,8 @@ body {
   cursor: pointer;
 }
 
-.playing {
-  background-color: red;
+.playing, .playing td {
+  background-color: red !important;
 }
 
 .track-listing .controls {

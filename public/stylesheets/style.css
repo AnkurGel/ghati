@@ -1,0 +1,16 @@
+.container {
+  width: 1350px;
+}
+
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.track-listing .track {
+  cursor: pointer;
+}
+
+.playing {
+  background-color: red;
+}

@@ -14,3 +14,7 @@ body {
 .playing {
   background-color: red;
 }
+
+.track-listing .controls {
+  cursor: pointer;
+}

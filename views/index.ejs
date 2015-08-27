@@ -35,22 +35,48 @@
 
   <script type="text/ng-template" id="/home.html">
     <div class="col-md-8">
-      <youtube-video video-url="currentVideoUrl"></youtube-video>
+      <youtube-video video-url="currentVideo.url" player="currentVideo.player"></youtube-video><br/>
+      <div class="controls">
+        <span ng-show="currentVideo.player.currentState == 'playing'">
+          <button type="button" class="btn btn-default btn-lg" ng-click="currentVideo.player.pauseVideo()">
+            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
+          </button>
+        </span>
+        <span ng-show="currentVideo.player.currentState == 'paused'">
+          <button type="button" class="btn btn-default btn-lg" ng-click="currentVideo.player.playVideo()">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play
+          </button>
+        </span>
+
+        <button type="button" class="btn btn-default btn-lg" ng-click="currentVideo.player.stopVideo()">
+          <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop
+        </button>
+      </div>
     </div>
     <div class="col-md-4" class="track-listing">
-      <a ng-click="shuffle()">Shuffle</a>
-      <a ng-click="loopToggle()">
-        <span ng-hide="loopingOn">Loop this track</span>
-        <span ng-show="loopingOn">Stop looping this track</span>
-      </a>
+      <div class="row" class="controls">
+        <div class="col-md-6">
+          <a ng-click="shuffle()">Shuffle</a>
+        </div>
+        <div class="col-md-6 text-right">
+          <a ng-click="loopToggle()">
+            <span ng-hide="loopingOn">Loop this track</span>
+            <span ng-show="loopingOn">Stop looping this track</span>
+          </a>
+        </div>
+      </div>
+
+      Currently playing: {{ currentVideo.object.title }}
       <table class="table table-striped">
         <tr>
           <th>Track</th>
+          <th>Movie</th>
           <th>Duration</th>
         </tr>
         <tr ng-repeat="track in playlist" class="track" ng-class="{playing : track.beingPlayed }">
-          <td>{{track.title}}</td>
-          <td>{{track.duration}}</td>
+          <td>{{track.title | extract: 'trackTitle'}}</td>
+          <td>{{ track.title | extract: 'movieName' }}</td>
+          <td>{{track.duration | extract: 'duration'}}</td>
         </tr>
       </table>
     </div>

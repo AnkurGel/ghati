@@ -7,7 +7,10 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
     object: playlist[currentIndex],
     url: playlist[currentIndex].file,
     index: 0,
-    player: null
+    player: null,
+    videoDisplayed: true,
+    height: '390px',
+    width: '640px'
   };
 
   $scope.playlist = playlist;
@@ -46,6 +49,20 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
     $scope.currentVideo.url = $scope.currentVideo.object.file;
     $scope.currentVideo.object.beingPlayed = true;
     player.playVideo();
+  };
+
+  $scope.toggleVideoDisplay = function(player) {
+    if(!$scope.currentVideo.videoDisplayed) {
+      player.setSize('640px', '390px');
+      $scope.currentVideo.width = '640px';
+      $scope.currentVideo.height = '390px';
+      $scope.currentVideo.videoDisplayed = true;
+    } else {
+      player.setSize('0px', '0px');
+      $scope.currentVideo.width = '0px';
+      $scope.currentVideo.height = '0px';
+      $scope.currentVideo.videoDisplayed = false;
+    }
   };
 
   function playNext(player, playNext, playPrevious) {

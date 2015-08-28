@@ -35,7 +35,7 @@
 
   <script type="text/ng-template" id="/home.html">
     <div class="col-md-8">
-      <youtube-video video-url="currentVideo.url" player="currentVideo.player"></youtube-video><br/>
+      <youtube-video video-url="currentVideo.url" player="currentVideo.player" player-width="currentVideo.width" player-height="currentVideo.height"></youtube-video><br/>
       <div class="controls">
         <span ng-show="currentVideo.player.currentState == 'playing'">
           <button type="button" class="btn btn-default btn-lg" ng-click="currentVideo.player.pauseVideo()">
@@ -57,7 +57,9 @@
         <button type="button" class="btn btn-default btn-lg" ng-click="playNext(currentVideo.player)" ng-hide="currentVideo.index == playlist.length - 1">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Next
         </button>
-
+        <button type="button" class="btn btn-default btn-lg" ng-click="toggleVideoDisplay(currentVideo.player)" ng-hide="currentVideo.index == playlist.length - 1">
+          <span class="glyphicon" ng-class="{'glyphicon-music': currentVideo.videoDisplayed, 'glyphicon-film': !currentVideo.videoDisplayed}" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
     <div class="col-md-4 track-listing">

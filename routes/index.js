@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/playlist.json', function(req, res, next) {
-  fs.createReadStream('data/playlist.json').pipe(res);
+  fs.createReadStream('data/playlist2.json').pipe(res);
 });
 
 module.exports = router;

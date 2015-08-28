@@ -1,0 +1,24 @@
+{
+  "name": "ghati",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AnkurGel/ghati",
+  "authors": [
+    "Ankur Goel <ankurgel@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "angular": "~1.4.4",
+    "angular-youtube-mb": "~1.1.0",
+    "bower": "*",
+    "ng-lodash": "~0.2.3",
+    "lodash": "~3.10.1"
+  }
+}

@@ -41,6 +41,7 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
     var targetIndex = playlist.indexOf(track);
     $scope.currentVideo.object.beingPlayed = false;
     $scope.currentVideo.index = targetIndex;
+    currentIndex = targetIndex;
     $scope.currentVideo.object = playlist[targetIndex];
     $scope.currentVideo.url = $scope.currentVideo.object.file;
     $scope.currentVideo.object.beingPlayed = true;
@@ -48,18 +49,20 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
   };
 
   function playNext(player, playNext, playPrevious) {
-    $scope.currentVideo.object.beingPlayed = false;
-    $scope.currentVideo.object.completed = true;
-    if(playNext || playPrevious) {
-      playNext ? (currentIndex += 1) : (currentIndex -= 1);
-    } else {
-      currentIndex += ($scope.loopingOn ? 0 : 1);
+    if(currentIndex < playlist.length - 1){
+      $scope.currentVideo.object.beingPlayed = false;
+      $scope.currentVideo.object.completed = true;
+      if(playNext || playPrevious) {
+        playNext ? (currentIndex += 1) : (currentIndex -= 1);
+      } else {
+        currentIndex += ($scope.loopingOn ? 0 : 1);
+      }
+      $scope.currentVideo.index = currentIndex;
+      $scope.currentVideo.object = playlist[currentIndex];
+      $scope.currentVideo.url = $scope.currentVideo.object.file;
+      $scope.currentVideo.object.beingPlayed = true;
+      player.playVideo();
     }
-    $scope.currentVideo.index = currentIndex;
-    $scope.currentVideo.object = playlist[currentIndex];
-    $scope.currentVideo.url = $scope.currentVideo.object.file;
-    $scope.currentVideo.object.beingPlayed = true;
-    player.playVideo();
   }
 
 }]);

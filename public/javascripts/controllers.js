@@ -1,6 +1,6 @@
 var ghatiControllers = angular.module('ghatiControllers', []);
 
-ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist', 'lodash', function($scope, playlistLoader, playlist, lodash) {
+ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist', 'lodash', '$localStorage', '$sessionStorage',  function($scope, playlistLoader, playlist, lodash, $localStorage, $sessionStorage) {
   var currentIndex = 0;
   playlist = lodash.shuffle(playlist);
   $scope.currentVideo = {
@@ -12,6 +12,8 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
     height: '390px',
     width: '640px'
   };
+
+  $scope.loopingOn = $localStorage.loopingOn;
 
   $scope.playlist = playlist;
 
@@ -30,6 +32,7 @@ ghatiControllers.controller('PlayerCtrl', ['$scope', 'playlistLoader', 'playlist
 
   $scope.loopToggle = function() {
     $scope.loopingOn = !$scope.loopingOn;
+    $localStorage.loopingOn = $scope.loopingOn;
   };
 
   $scope.playNext = function(player) {

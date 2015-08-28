@@ -1,4 +1,4 @@
-var app = angular.module("ghati", ['ngLodash', 'ui.router', 'youtube-embed', 'ghatiServices', 'ghatiControllers']);
+var app = angular.module("ghati", ['ngLodash', 'ngStorage', 'ui.router', 'youtube-embed', 'ghatiServices', 'ghatiControllers']);
 
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
